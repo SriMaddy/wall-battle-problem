@@ -7,6 +7,8 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Scanner;
 
+import app.factory.TimeUnitFactory;
+
 public class MainClass {
 
 	private static final String DAY_SEPERATOR = ";";
@@ -26,7 +28,7 @@ public class MainClass {
 	public static void main(String[] args) {
 		String input;
 		Scanner scanner = new Scanner(System.in);
-		System.out.println("Enter input:");
+		// System.out.println("Enter input:");
 		input = scanner.nextLine();
 		scanner.close();
 
@@ -35,28 +37,9 @@ public class MainClass {
 	}
 
 	private static void createEmptyWall() {
-		wall = new Wall();
-		Side northSide = new Side();
-		northSide.setDirection(Direction.valueOf(Direction.N.name()));
-		northSide.setHeight(0);
-		wall.setNorthSide(northSide);
+		wall = Wall.create();
 
-		Side southSide = new Side();
-		southSide.setDirection(Direction.valueOf(Direction.S.name()));
-		southSide.setHeight(0);
-		wall.setSouthSide(southSide);
-
-		Side eastSide = new Side();
-		eastSide.setDirection(Direction.valueOf(Direction.E.name()));
-		eastSide.setHeight(0);
-		wall.setEastSide(eastSide);
-
-		Side westSide = new Side();
-		westSide.setDirection(Direction.valueOf(Direction.W.name()));
-		westSide.setHeight(0);
-		wall.setWestSide(westSide);
-
-//		System.out.println("wall: " + wall.toString());
+		// System.out.println("wall: " + wall.toString());
 	}
 
 	private static void processInput(String input) {
@@ -73,6 +56,7 @@ public class MainClass {
 
 			// System.out.println("subInput:" + subInput);
 
+			TimeUnitFactory timeUnitFactory = TimeUnitFactory.create();
 			if (subInput.contains(TRIBE_SEPERATOR)) {
 				String[] subInputArr = subInput.split(TRIBE_SEPERATOR);
 				List<Tribe> tribes = new ArrayList<>();
@@ -82,20 +66,22 @@ public class MainClass {
 					tribes.add(tribe);
 				}
 				// System.out.println("tribes: " + tribes.toString());
-				timeUnits.add(createTimeUnit(tribes));
+				// timeUnits.add(createTimeUnit(tribes));
+				timeUnits.add(timeUnitFactory.createTimeUnit(tribes));
 			} else {
 				List<Tribe> tribes = new ArrayList<>();
 				Tribe tribe = getTribe(subInput);
 				tribes.add(tribe);
-				timeUnits.add(createTimeUnit(tribes));
+				timeUnits.add(timeUnitFactory.createTimeUnit(tribes));
+				// timeUnits.add(createTimeUnit(tribes));
 			}
 		}
 
-		for (TimeUnit timeUnit : timeUnits) {
-//			System.out.println("TimeUnit: " + timeUnit.toString());
-		}
+		// for (TimeUnit timeUnit : timeUnits) {
+		// System.out.println("TimeUnit: " + timeUnit.toString());
+		// }
 
-//		System.out.println("timeUnitSize: " + timeUnits.size());
+		// System.out.println("timeUnitSize: " + timeUnits.size());
 
 		// start to attack wall
 		Map<Side, Integer> resultMap = new HashMap<>();
@@ -108,7 +94,8 @@ public class MainClass {
 				Side sideToBeAttacked = wall.getSide(tribe.getDirection());
 				Weapon weapon = weapons.get(0);
 				boolean isAttackSuccessful = tribe.attackOneSideOfWall(sideToBeAttacked, weapon);
-//				System.out.println("isAttackSuccessful: " + isAttackSuccessful);
+				// System.out.println("isAttackSuccessful: " +
+				// isAttackSuccessful);
 				if (isAttackSuccessful) {
 					possibleSucessfulAttackCount += 1;
 					resultMap.put(sideToBeAttacked, weapon.getPower());
@@ -129,18 +116,18 @@ public class MainClass {
 					wall.setWestSide(side);
 				}
 			}
-//			System.out.println("wall after attack: " + wall.toString());
+			// System.out.println("wall after attack: " + wall.toString());
 			resultMap.clear();
 		} while (index < timeUnits.size());
-		
+
 		System.out.println(possibleSucessfulAttackCount);
 	}
 
-	private static TimeUnit createTimeUnit(List<Tribe> tribes) {
-		TimeUnit timeUnit = new TimeUnit();
-		timeUnit.setTribes(tribes);
-		return timeUnit;
-	}
+	// private static TimeUnit createTimeUnit(List<Tribe> tribes) {
+	// TimeUnit timeUnit = new TimeUnit();
+	// timeUnit.setTribes(tribes);
+	// return timeUnit;
+	// }
 
 	private static Tribe getTribe(String subInput) {
 		String[] task = subInput.split(TASK_SEPERATOR);

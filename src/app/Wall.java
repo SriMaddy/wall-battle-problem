@@ -2,47 +2,52 @@ package app;
 
 public class Wall {
 
-	/*
-	 * private List<Side> sides;
-	 * 
-	 * public List<Side> getSides() { return sides; }
-	 * 
-	 * public void setSide(List<Side> sides) { this.sides = sides; }
-	 * 
-	 * @Override public String toString() { return sides.toString(); }
-	 */
+	private Wall() {
+	}
+
+	public static Wall create() {
+		Wall wall = null;
+		if (wall == null) {
+			wall = new Wall();
+
+			Side northSide = new Side();
+			northSide.setDirection(Direction.valueOf(Direction.N.name()));
+			northSide.setHeight(0);
+			wall.setNorthSide(northSide);
+
+			Side southSide = new Side();
+			southSide.setDirection(Direction.valueOf(Direction.S.name()));
+			southSide.setHeight(0);
+			wall.setSouthSide(southSide);
+
+			Side eastSide = new Side();
+			eastSide.setDirection(Direction.valueOf(Direction.E.name()));
+			eastSide.setHeight(0);
+			wall.setEastSide(eastSide);
+
+			Side westSide = new Side();
+			westSide.setDirection(Direction.valueOf(Direction.W.name()));
+			westSide.setHeight(0);
+			wall.setWestSide(westSide);
+		}
+		return wall;
+	}
 
 	private Side northSide;
 	private Side southSide;
 	private Side eastSide;
 	private Side westSide;
 
-	public Side getNorthSide() {
-		return northSide;
-	}
-
 	public void setNorthSide(Side northSide) {
 		this.northSide = northSide;
-	}
-
-	public Side getSouthSide() {
-		return southSide;
 	}
 
 	public void setSouthSide(Side southSide) {
 		this.southSide = southSide;
 	}
 
-	public Side getEastSide() {
-		return eastSide;
-	}
-
 	public void setEastSide(Side eastSide) {
 		this.eastSide = eastSide;
-	}
-
-	public Side getWestSide() {
-		return westSide;
 	}
 
 	public void setWestSide(Side westSide) {
