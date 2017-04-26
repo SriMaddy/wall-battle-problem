@@ -1,12 +1,19 @@
-package app;
+package app.tribe;
 
 import java.util.List;
+
+import app.Direction;
+import app.Wall;
+import app.Weapon;
 
 public class Tribe {
 
 	private String name;
 	private List<Weapon> weapons;
 	private Direction direction;
+
+	Tribe() {
+	}
 
 	public List<Weapon> getWeapons() {
 		return weapons;
@@ -31,17 +38,14 @@ public class Tribe {
 	public void setName(String name) {
 		this.name = name;
 	}
-	
-	public boolean attackOneSideOfWall(Side side, Weapon weapon) {
-		return side.isBreakable(weapon.getPower());
+
+	public boolean attack(Wall wall, Direction direction, Weapon weapon) {
+		return wall.isSideBreakable(direction, weapon);
 	}
-	
+
 	@Override
 	public String toString() {
-		if(direction != null) {
-			return name + " " + weapons.toString() + " " + direction.toString();
-		}
-		return name + " " + weapons.toString();
+		return name + " " + weapons.toString() + " " + direction.toString();
 	}
 
 }

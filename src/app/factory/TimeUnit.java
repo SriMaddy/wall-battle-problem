@@ -1,10 +1,15 @@
-package app;
+package app.factory;
 
 import java.util.List;
+
+import app.tribe.Tribe;
 
 public class TimeUnit {
 
 	private List<Tribe> tribes;
+	
+	TimeUnit() {
+	}
 
 	public List<Tribe> getTribes() {
 		return tribes;

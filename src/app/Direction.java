@@ -2,7 +2,6 @@ package app;
 
 public enum Direction {
 
-//	NORTH("N"), SOUTH("S"), EAST("E"), WEST("W");
 	N("NORTH"), S("SOUTH"), E("EAST"), W("WEST");
 
 	private String direction;
@@ -10,7 +9,23 @@ public enum Direction {
 	private Direction(String direction) {
 		this.direction = direction;
 	}
-	
+
+	public boolean isNorth() {
+		return this == Direction.N;
+	}
+
+	public boolean isSouth() {
+		return this == Direction.S;
+	}
+
+	public boolean isEast() {
+		return this == Direction.E;
+	}
+
+	public boolean isWest() {
+		return this == Direction.W;
+	}
+
 	@Override
 	public String toString() {
 		return direction;

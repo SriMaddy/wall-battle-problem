@@ -3,7 +3,8 @@ package app;
 public class Weapon {
 
 	private String name;
-	private int power;
+	private int unitPower;
+	private int netPower;
 
 	public String getName() {
 		return name;
@@ -13,16 +14,24 @@ public class Weapon {
 		this.name = name;
 	}
 
-	public int getPower() {
-		return power;
+	public int getUnitPower() {
+		return unitPower;
 	}
 
-	public void setPower(int power) {
-		this.power = power;
+	public void setUnitPower(int unitPower) {
+		this.unitPower = unitPower;
 	}
-	
+
+	public int getNetPower() {
+		return netPower;
+	}
+
+	public void setNetPower(int netPower) {
+		this.netPower = netPower;
+	}
+
 	@Override
 	public String toString() {
-		return name + " " + power;
+		return name + " " + unitPower + " " + netPower;
 	}
 }

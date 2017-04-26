@@ -5,6 +5,10 @@ public class Side {
 	private int height;
 	private Direction direction;
 
+	public Side(Direction direction) {
+		this.direction = direction;
+	}
+
 	public int getHeight() {
 		return height;
 	}

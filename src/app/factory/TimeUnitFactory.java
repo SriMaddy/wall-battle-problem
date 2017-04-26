@@ -2,8 +2,7 @@ package app.factory;
 
 import java.util.List;
 
-import app.TimeUnit;
-import app.Tribe;
+import app.tribe.Tribe;
 
 public class TimeUnitFactory {
 
