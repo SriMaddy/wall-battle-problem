@@ -32,6 +32,10 @@ public class Tribe {
 		this.name = name;
 	}
 	
+	public boolean attackOneSideOfWall(Side side, Weapon weapon) {
+		return side.isBreakable(weapon.getPower());
+	}
+	
 	@Override
 	public String toString() {
 		if(direction != null) {
